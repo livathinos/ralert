@@ -35,7 +35,7 @@ class Ralert
   def construct_uri(query, options)
     base_uri = "https://google.com/search?q="
     
-    if !options.literal.nil?
+    if options.literal?
     	query = "\"" + query + "\"" 
     end
 
@@ -45,19 +45,17 @@ class Ralert
       query += "&tbs=qdr:w"
     end
 
-    if options.sort_by.nil?
+    if options.sort_by == 'd'
       query += ",sbd:1"
     end
     
-    if !options.safe.nil?
+    if options.safe == 'on'
       query += "&safe=on"
     else
       query += "&safe=off"
     end
 
-    if options.mode.nil?
-      query += "&tbm=nws"
-    end
+    query += "&tbm=#{options.mode}"
 
     return base_uri + query
   end

@@ -11,15 +11,37 @@ First, require the gem.
 
     require 'ralert'
 
+or if you are using a Gemfile, append this line
+
+    gem 'ralert'
+
 Instantiate a SearchOptions object. This is optional and if skipped, the default options
 wil be used instead.
 
-    options = SearchOptions.new
-    options.literal = true
-    options.sort_by = 'd'    # sorts by date instead of relevance (default).
-    options.date_range = 'd' # keeps results from the last 24 hours instead of 'all time' (default)
-    options.safe = 'on'      # uses safe search
-    options.mode = 'nws'     # searches Google News
+
+    Options = SearchOptions.new
+
+    options.literal = true      # Whether or not this should be a literal search, ie. BOTH keywords 
+                                # need to be present in the order presented in the string.
+                                # values: true, false
+                                # default: false
+
+    options.sort_by = 'd'       # Sorts by date(d) instead of relevance.
+                                # values: 'd', 'r'
+                                # default: 'd'
+
+    options.date_range = 'd'    # Returns results from the specified time frame instead of 'all time'.
+                                # values: 'h', 'd', 'w', 'm', 'y', 'all'
+                                # default: 'w' (ie. one week)
+
+    options.safe = 'on'         # Uses the Google safe search feature.
+                                # values: on, off
+                                # default: off
+
+    options.mode = 'nws'        # Searches through the Google News module instead of the all inclusive search 
+                                # module
+                                # values: 'nws', 'all'
+                                # default: 'nws'
 
 Request a search with a set of keywords using the above options
 
