@@ -35,8 +35,8 @@ class Ralert
   def construct_uri(query, options)
     base_uri = "https://google.com/search?q="
     
-    if options.literal?
-    	query = "\"" + query + "\"" 
+    if options.literal
+    	query = "%22" + query + "%22" 
     end
 
     if !options.date_range.nil?
